@@ -6,6 +6,27 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### September
 
+- **Reconcile Makalu partition sizes** ([#61](https://github.com/teamsbc/distribution/issues/61)).
+  Makalu images now include two 2 GiB `/usr` partitions on both x86_64 and
+  aarch64, matching the shipped `repart.d` configuration. The second slot is
+  left empty for sysupdate and excluded from automatic mounting. This lets
+  `systemd-repart` succeed without requiring a larger destination disk.
+
+- **Configure predictable boot entry names** ([#62](https://github.com/teamsbc/distribution/issues/62)).
+  Configured `kernel-install` entry names to include the entry token, image ID,
+  and architecture. Lhotse names include the kernel version to distinguish
+  installed kernels; Makalu UKI names include the image version for updates.
+
+- **Publish metadata alongside updates** ([#60](https://github.com/teamsbc/distribution/issues/60)).
+  Makalu updates now include build metadata under `meta/<IMAGE_VERSION>/`,
+  with checksum sidecars. Versioned paths preserve the manifests for each
+  published update so users can inspect how it was built.
+
+- **Clarify the offline provisioning workaround** ([#56](https://github.com/teamsbc/distribution/issues/56)).
+  Updated the handbook to explain that the SELinux relabeling workaround is
+  only needed when provisioning with host systemd tooling older than version
+  262. Provisioning with systemd 262 or newer does not require the workaround.
+
 - **Ship our own signing keys for sysupdate** ([#48](https://github.com/teamsbc/distribution/issues/48)).
   Moved the sysupdate signing keys out of `/etc` and into `/usr` by working with
   upstream Fedora to split the import keyring into a separate package, allowing
