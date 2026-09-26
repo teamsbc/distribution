@@ -1,6 +1,15 @@
-# 2026
+# NEWS
 
-## September
+Mostly a historical list of [issues](https://github.com/teamsbc/distribution/issues) that have been done over time in TeamSBC. This gives a bit of an idea of the development and changes.
+
+## 2026
+
+### September
+
+- **Ship our own signing keys for sysupdate** ([#48](https://github.com/teamsbc/distribution/issues/48)).
+  Moved the sysupdate signing keys out of `/etc` and into `/usr` by working with
+  upstream Fedora to split the import keyring into a separate package, allowing
+  us to ship our own keys cleanly without blocking `/etc` immutability.
 
 - **Create a `teamsbc-uboot` package** ([#47](https://github.com/teamsbc/distribution/issues/47)).
   Built a custom `teamsbc-uboot` package with per-board subpackages for images.
@@ -34,7 +43,7 @@
   CI now automatically publishes built artifacts to `updates.teamsbc.net`,
   closing the loop on the automated update pipeline.
 
-## August
+### August
 
 - **Rename `standard` to `lhotse`** ([#37](https://github.com/teamsbc/distribution/issues/37), [#33](https://github.com/teamsbc/distribution/issues/33)).
   Adopted abstract naming for variants (Himalayan mountains) instead of names
@@ -64,14 +73,14 @@
 - **Support Fedora 46** ([#46](https://github.com/teamsbc/distribution/issues/46)).
   Added Fedora 46 support after the Fedora branch point and dropped Fedora 44.
 
-## July
+### July
 
 - **`systemd-repart` fails to start on build** ([#31](https://github.com/teamsbc/distribution/issues/31)).
   Fixed a disk image alignment mismatch between `image-builder` and
   `systemd-repart` that caused repart to fail when the image wasn't resized
   after building. Addressed upstream and enabled the fix.
 
-## June
+### June
 
 - **Use `systemd-boot`** ([#9](https://github.com/teamsbc/distribution/issues/9)).
   Switched from `grub2` to `systemd-boot` as the bootloader, requiring
@@ -108,7 +117,7 @@
   Added Raspberry Pi 5 as a supported board now that upstream support is
   sufficiently mature.
 
-## May
+### May
 
 - **Implement dated repositories** ([#15](https://github.com/teamsbc/distribution/issues/15)).
   Implemented dated builds for packages (matching what was already done for
@@ -127,7 +136,7 @@
   `systemd-gpt-auto-generator` mounts the root partition instead, which
   correctly honors the growfs flag. Required upstream `image-builder` work.
 
-## April
+### April
 
 - **Generate HTML indexes** ([#5](https://github.com/teamsbc/distribution/issues/5)).
   Added HTML directory listing generation for artifact and package repositories
@@ -155,7 +164,7 @@
   Extracted the duplicated `s3-directory-listing` template into its own
   repository and submoduled it into both artifacts and packages.
 
-## March
+### March
 
 - **Figure out if `systemd-timesyncd` is set up correctly** ([#12](https://github.com/teamsbc/distribution/issues/12)).
   Verified that `systemd-timesyncd` works correctly out of the box in the
@@ -169,7 +178,7 @@
   Set up automatic building and deployment of the `mdbook`-based handbook at
   `handbook.teamsbc.org`.
 
-## February
+### February
 
 - **`systemd-homed` is broken** ([#1](https://github.com/teamsbc/distribution/issues/1)).
   Fixed a bug where creating a user through the `systemd-homed` first boot
