@@ -4,6 +4,14 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ## 2026
 
+### October
+
+- **Export UKIs separately as part of an image build** ([#50](https://github.com/teamsbc/distribution/issues/50)).
+  Makalu builds now export UKIs as separate files alongside the image,
+  using the predictable entry names from #62. This lets CI publish UKIs
+  to `updates.teamsbc.net` for sysupdate delivery, complementing the
+  partition exports from #44.
+
 ### September
 
 - **Reconcile Makalu partition sizes** ([#61](https://github.com/teamsbc/distribution/issues/61)).
@@ -12,7 +20,7 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
   left empty for sysupdate and excluded from automatic mounting. This lets
   `systemd-repart` succeed without requiring a larger destination disk.
 
-- **Configure predictable boot entry names** ([#62](https://github.com/teamsbc/distribution/issues/62)).
+- **Configure predictable boot entry names** ([#62](https://github.com/teamsbc/distribution/issues/62), [#63](https://github.com/teamsbc/distribution/issues/63)).
   Configured `kernel-install` entry names to include the entry token, image ID,
   and architecture. Lhotse names include the kernel version to distinguish
   installed kernels; Makalu UKI names include the image version for updates.
