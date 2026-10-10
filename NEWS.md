@@ -6,6 +6,24 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### October
 
+- **Build system extensions alongside images** ([#38](https://github.com/teamsbc/distribution/issues/38)).
+  Enabled experimental builds of a `tmux` system extension for `makalu-virt`,
+  built alongside the image with matching `IMAGE_ID` and `IMAGE_VERSION`.
+  CI publishes the EROFS extension, build metadata, and checksums to
+  `extensions.teamsbc.net`.
+
+- **Build artifacts daily when sources change** ([#20](https://github.com/teamsbc/distribution/issues/20), [#68](https://github.com/teamsbc/distribution/issues/68)).
+  Artifact CI now runs daily and compares the new manifest's sources with
+  the latest published build, skipping image builds and update publication
+  when they match. Manual and code-triggered runs still rebuild unconditionally.
+  Packages remain built on source changes rather than on a daily schedule.
+
+- **Only rebuild changed packages** ([#67](https://github.com/teamsbc/distribution/issues/67)).
+  Package CI records the source commit in repository metadata and rebuilds
+  packages whose sources changed since that commit, retaining existing RPMs
+  for unchanged packages. Shared build changes and manual runs rebuild all
+  packages.
+
 - **Export UKIs separately as part of an image build** ([#50](https://github.com/teamsbc/distribution/issues/50)).
   Makalu builds now export UKIs as separate files alongside the image,
   using the predictable entry names from #62. This lets CI publish UKIs
