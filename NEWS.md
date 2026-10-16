@@ -6,11 +6,62 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### October
 
+- **Fix signature verification dependencies** ([#54](https://github.com/teamsbc/distribution/issues/54)).
+  Fixed Fedora's `systemd-container` packaging to require `gnupg2`, which
+  `systemd-pull` needs to verify downloads. The upstream change was merged,
+  preventing verification failures when no other package pulls in GnuPG.
+
+- **Allow system extension downloads under SELinux.**
+  Extended `teamsbc-selinux` to let `systemd-importd` download and manage
+  extension images under `/var/lib/extensions`, including renaming completed
+  downloads and removing partial or obsolete images.
+
+- **Ship an optional tmux sysupdate feature** ([#69](https://github.com/teamsbc/distribution/issues/69)).
+  Added a disabled-by-default feature and transfer to `teamsbc-config-makalu`
+  for the `makalu-virt` tmux extension. The transfer uses the extensions
+  publication domain and retains two versions under `/var/lib/extensions`.
+  Named the build definition `tmux` and removed CI's `se-` prefix stripping.
+  The internal release name now matches installation as
+  `tmux_<version>.sysext.raw`, preserving strict filename checking without
+  changes to image-builder. Published filenames remain unchanged.
+
+- **Keep the latest three artifact, update, and extension builds** ([#55](https://github.com/teamsbc/distribution/issues/55)).
+  Added version-aware cleanup across all three publication buckets, retaining
+  three builds per branch, Fedora version, architecture, and image type.
+  Older payloads, metadata, and checksum sidecars are removed together.
+  Builds, cleanup, and index generation now run in one serialized pipeline,
+  with signed checksum indexes regenerated after cleanup.
+
+- **Update U-Boot and package firmware for Radxa Zero 3.**
+  Updated `teamsbc-uboot` to the U-Boot 2026.10 stable release and added a
+  `teamsbc-uboot-radxa-zero-3` subpackage for the RK3566-based board, including
+  its Rockchip DDR initialization firmware.
+
+- **Build Makalu for Raspberry Pi 5 and aarch64 virtual machines.**
+  Added the `makalu-rpi5` image definition and enabled CI builds for it and
+  aarch64 `makalu-virt`, including separate `/usr` and UKI update payloads.
+
+- **Create the project website** ([#73](https://github.com/teamsbc/distribution/issues/73)).
+  Built a VitePress website at `teamsbc.org` with downloads, project background,
+  frequently asked questions, and sponsoring information. Added Czech, Dutch,
+  French, German, Russian, and Spanish translations.
+
+- **Migrate the handbook to VitePress** ([#72](https://github.com/teamsbc/distribution/issues/72)).
+  Replaced mdBook with VitePress and separated maintenance instructions for
+  Lhotse and Makalu. Added Makalu instructions for system updates with
+  `updatectl` and for installing, removing, and listing system extensions.
+
 - **Build system extensions alongside images** ([#38](https://github.com/teamsbc/distribution/issues/38)).
   Enabled experimental builds of a `tmux` system extension for `makalu-virt`,
   built alongside the image with matching `IMAGE_ID` and `IMAGE_VERSION`.
   CI publishes the EROFS extension, build metadata, and checksums to
   `extensions.teamsbc.net`.
+
+- **Reduce the base image package set.**
+  Moved `linux-firmware` and `fwupd-efi` into the hardware package set so
+  virtual-machine images no longer include them by default. Excluded
+  `parted`, `hostname`, and `openssh-clients` from the core package set, and
+  `man-db` from Makalu.
 
 - **Build artifacts daily when sources change** ([#20](https://github.com/teamsbc/distribution/issues/20), [#68](https://github.com/teamsbc/distribution/issues/68)).
   Artifact CI now runs daily and compares the new manifest's sources with
