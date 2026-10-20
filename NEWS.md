@@ -6,6 +6,44 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### October
 
+- **Expand Makalu maintenance instructions** ([#70](https://github.com/teamsbc/distribution/issues/70)).
+  Documented automatic system updates and optional automatic reboots using
+  the separate sysupdate timers. Expanded system extension instructions to
+  distinguish enabled features, downloaded images, and active extensions,
+  and added user management with `homectl`, including SSH login guidance.
+
+- **Allow updates on removable boot media under SELinux** ([#78](https://github.com/teamsbc/distribution/issues/78)).
+  Extended `teamsbc-selinux` to let `systemd-sysupdate`, `systemd-bless-boot`,
+  and `systemd-pull` access removable block devices such as microSD cards.
+  This allows partition updates and boot assessment on devices booting from
+  removable media. Existing Makalu installations still need to reload the
+  updated SELinux policy after an OS update.
+
+- **Include nftables firewall tools by default.**
+  Added `nftables` and `nftables-services` to the core image package set and
+  documented nftables as the provided firewall tooling in the handbook.
+
+- **Build system extensions for Makalu on Raspberry Pi 4 and 5.**
+  Enabled the shared Makalu system extension definitions for `makalu-rpi4`
+  and `makalu-rpi5`, building the tmux extension alongside those images as
+  well as `makalu-virt`.
+
+- **Complete the initial Makalu variant** ([#36](https://github.com/teamsbc/distribution/issues/36)).
+  Reached the initial image-based system milestone: sysupdate delivers a
+  versioned `/usr` partition and UKI, with matching system extensions built
+  alongside the disk image from the same package inputs.
+
+- **Rebuild CI containers daily** ([#58](https://github.com/teamsbc/distribution/issues/58)).
+  Closed the CI container refresh task with daily scheduled builds of
+  `ci-artifacts` and `ci-packages` for x86_64 and aarch64. Builds publish
+  both rolling Fedora-version tags and dated tags.
+
+- **Show source changes in artifact CI** ([#75](https://github.com/teamsbc/distribution/issues/75)).
+  Added readable comparisons with the latest published build's sources to
+  CI logs and job summaries, including package, checksum, and source option
+  changes. Comparisons now run for manual and code-triggered builds as well
+  as scheduled builds; only scheduled builds skip unchanged sources.
+
 - **Fix signature verification dependencies** ([#54](https://github.com/teamsbc/distribution/issues/54)).
   Fixed Fedora's `systemd-container` packaging to require `gnupg2`, which
   `systemd-pull` needs to verify downloads. The upstream change was merged,
