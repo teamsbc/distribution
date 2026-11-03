@@ -4,7 +4,33 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ## 2026
 
+### November
+
+- **Fix activation of the lm-sensors system extension** ([#84](https://github.com/teamsbc/distribution/issues/84)).
+  Renamed the Makalu extension and sysupdate feature from `lm_sensors` to
+  `lm-sensors`. This avoids systemd interpreting the underscore as a version
+  separator and keeps the extension image and release metadata names aligned.
+
 ### October
+
+- **Add more optional Makalu system extensions.**
+  Added image definitions and disabled-by-default sysupdate features for
+  screen, WeeChat, pciutils, usbutils, lsof, strace, Mosquitto, copyparty,
+  HAProxy, and lm-sensors, alongside the existing tmux extension.
+
+- **Speed up system extension builds** ([#76](https://github.com/teamsbc/distribution/issues/76)).
+  Contributed an image-builder change that builds extensions on the base tree
+  and installs only the additional packages in a separate transaction. An
+  example build with three extensions dropped from about seven to four minutes.
+
+- **Restore Raspberry Pi 5 Ethernet** ([#81](https://github.com/teamsbc/distribution/issues/81)).
+  Changed image builds to place the upstream kernel device trees for Pi 5
+  Model B on the ESP, fixing the immediate Ethernet problem. Longer-term
+  firmware and device-tree update handling remains under discussion in
+  [#83](https://github.com/teamsbc/distribution/issues/83).
+
+- **Fix Raspberry Pi 5 NVMe boot** ([#79](https://github.com/teamsbc/distribution/issues/79)).
+  Added Raspberry Pi 5 U-Boot patches needed to boot from NVMe storage.
 
 - **Expand Makalu maintenance instructions** ([#70](https://github.com/teamsbc/distribution/issues/70)).
   Documented automatic system updates and optional automatic reboots using
