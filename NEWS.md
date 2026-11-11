@@ -6,6 +6,37 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### November
 
+- **Drop the Lhotse variant** ([#88](https://github.com/teamsbc/distribution/issues/88)).
+  Removed Lhotse from the image build matrix and its configuration packages,
+  handbook, and website. Makalu is now the distribution's sole variant.
+
+- **Match UKIs to their `/usr` partitions** ([#53](https://github.com/teamsbc/distribution/issues/53)).
+  Added a version-specific `systemd.image_filter` kernel argument when building
+  Makalu images, so each UKI selects the `/usr` partition from the same build.
+
+- **Add more optional system extensions.**
+  Added Podman, Valkey, and administration and debugging tools including
+  jq, tcpdump, htop, iperf3, ethtool, smartmontools, nvme-cli, bind-utils,
+  ripgrep, nmap, fio, i2c-tools, i2c-display, and bpftrace as extensions with
+  disabled-by-default sysupdate features.
+
+- **Retry artifact uploads** ([#86](https://github.com/teamsbc/distribution/issues/86)).
+  Artifact, update, and extension uploads now retry failed copies up to three
+  attempts, reducing build failures caused by transient upload errors.
+
+- **Expand the handbook.**
+  Added troubleshooting guidance and expanded the networking and user
+  management instructions for Makalu.
+
+- **Clean up unreferenced package repository files** ([#6](https://github.com/teamsbc/distribution/issues/6)).
+  Package CI now removes RPMs and repository metadata no longer referenced by
+  the published metadata, both from the latest repository and retained dated
+  snapshots. Cleanup validates metadata and referenced objects before deletion.
+
+- **Include Git in the package build container** ([#71](https://github.com/teamsbc/distribution/issues/71)).
+  Added Git and zstd to the package CI container for source selection and
+  repository metadata handling.
+
 - **Fix activation of the lm-sensors system extension** ([#84](https://github.com/teamsbc/distribution/issues/84)).
   Renamed the Makalu extension and sysupdate feature from `lm_sensors` to
   `lm-sensors`. This avoids systemd interpreting the underscore as a version
