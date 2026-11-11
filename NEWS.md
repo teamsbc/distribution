@@ -6,6 +6,10 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### November
 
+- **Remove the TeamSBC repository configuration package.**
+  Makalu images no longer pull in DNF repository definitions; package CI
+  continues to publish the signing public key.
+
 - **Drop the Lhotse variant** ([#88](https://github.com/teamsbc/distribution/issues/88)).
   Removed Lhotse from the image build matrix and its configuration packages,
   handbook, and website. Makalu is now the distribution's sole variant.
