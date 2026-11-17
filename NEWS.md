@@ -6,6 +6,27 @@ Mostly a historical list of [issues](https://github.com/teamsbc/distribution/iss
 
 ### November
 
+- **Prepare a Cockpit system extension.**
+  Added a Cockpit extension build and a disabled-by-default sysupdate feature.
+  The extension is not yet functional; PAM configuration and SELinux policy
+  changes are still needed.
+
+- **Allow systemd-homed to inspect shared-memory files under SELinux.**
+  Extended the TeamSBC policy to allow file attribute checks needed during
+  UID allocation, addressing denials seen when creating home directories.
+
+- **Load system extensions earlier in boot** ([#90](https://github.com/teamsbc/distribution/issues/90)).
+  Added the systemd-sysext dracut module to Makalu initrds so extensions can
+  be merged before the main system starts.
+
+- **Expand container and user documentation.**
+  Added guidance for running Podman system services and using SSH keys with
+  systemd-homed users, and documented SELinux policy reloads after updates.
+
+- **Show readable file sizes in download indexes.**
+  Updated the directory index generator and shared template to display file
+  sizes with units.
+
 - **Remove the TeamSBC repository configuration package.**
   Makalu images no longer pull in DNF repository definitions; package CI
   continues to publish the signing public key.
